@@ -1,0 +1,26 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Newsletters</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<h1>Newsletters</h1>
+<form action="/newsletters" method="POST">
+    <input type="text" name="name" placeholder="Newsletter Name" required>
+    <button type="submit">Add Newsletter</button>
+</form>
+<ul>
+    <% newsletters.forEach(function(newsletter) { %>
+        <li>
+            <%= newsletter.name %>
+            <a href="/newsletters/<%= newsletter.id %>">View Subscribers</a>
+            <form action="/newsletters/<%= newsletter.id %>?_method=DELETE" method="POST" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    <% }); %>
+</ul>
+</body>
+</html>
